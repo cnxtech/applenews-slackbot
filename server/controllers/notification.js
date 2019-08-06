@@ -1,8 +1,8 @@
-const slackbotNotificationHandler = require('../../slackbot/index.js');
+const slackbotNotificationHandler = require('../../slackbot/message');
 
 const notification = (req, res) => {
   // pass notification to slackBot
-  slackbotNotificationHandler(req);
+  slackbotNotificationHandler(req.body);
   res.send();
 };
 
