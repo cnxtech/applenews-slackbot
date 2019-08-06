@@ -1,0 +1,31 @@
+{
+  "name": "applenews-slackbot",
+  "version": "1.0.0",
+  "description": "An application that notifies stakeholders about all things applenews",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint --fix . && echo 'Lint complete.'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nbcnews/applenews-slackbot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nbcnews/applenews-slackbot/issues"
+  },
+  "homepage": "https://github.com/nbcnews/applenews-slackbot#readme",
+  "dependencies": {
+    "@slack/bolt": "^1.2.0",
+    "express": "^4.17.1",
+    "node": "^12.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "prettier": "^1.18.2"
+  }
+}
