@@ -25,7 +25,7 @@ const buildMessage = ({
   errorType,
   reason,
 }) => {
-  let text = `Article: ${wrapIn('`', articleId)}`;
+  let text = `Woops, looks like article: ${wrapIn('`', articleId)}`;
   const errorLine = `Due to an error of type: ${wrapIn('`', errorType)}.`;
   const detailsLine = `Details are as follows: ${wrapIn('"', reason)}.`;
 
