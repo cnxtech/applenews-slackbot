@@ -1,10 +1,6 @@
 const bot = require('./index');
 const getSlackChannel = require('./helpers/getSlackChannel');
-
-const concatWithNewline = (originalText, newText) =>
-  `${originalText}
-  ${newText}`;
-const wrapIn = (wrapper, text) => wrapper + text + wrapper;
+const { concatWithNewline, wrapIn } = require('./helpers/text');
 
 const buildMessage = ({
   articleId,
