@@ -1,6 +1,6 @@
 const bot = require('./index');
 
-const getChannel = id => {
+const getSlackChannel = id => {
   const getPrefix = id => id.slice(0, 4);
   const prefix = getPrefix(id);
   const isToday = prefix === 'tdna';
@@ -13,8 +13,10 @@ const getChannel = id => {
   return null;
 };
 
-const concatWithSpace = (originalText, newText) => `${originalText} ${newText}`;
-const wrapIn = (wrapper, text) => '`' + text + '`';
+const concatWithNewline = (originalText, newText) =>
+  `${originalText}
+  ${newText}`;
+const wrapIn = (wrapper, text) => wrapper + text + wrapper;
 
 const buildMessage = ({
   articleId,
@@ -28,25 +30,25 @@ const buildMessage = ({
   const detailsLine = `Details are as follows: ${wrapIn('"', reason)}.`;
 
   if (sectionName) {
-    text = concatWithSpace(
-      text,
-      `failed to ${wrapIn('`', interactionType)} on section: ${wrapIn(
-        '`',
-        sectionName,
-      )}.`,
-    );
+    text = `${text} failed to ${wrapIn(
+      '`',
+      interactionType,
+    )} on section: ${wrapIn('`', sectionName)}.`;
   } else {
-    text = concatWithSpace(text, `failed to ${wrapIn('`', interactionType)}.`);
+    text = concatWithNewline(
+      text,
+      `failed to ${wrapIn('`', interactionType)}.`,
+    );
   }
 
-  if (errorType) text = concatWithSpace(text, errorLine);
-  if (reason) text = concatWithSpace(text, detailsLine);
+  if (errorType) text = concatWithNewline(text, errorLine);
+  if (reason) text = concatWithNewline(text, detailsLine);
 
   return text;
 };
 
 const notificationHandler = message => {
-  const channel = getChannel(message.articleId);
+  const channel = getSlackChannel(message.articleId);
   if (!channel) return null;
 
   const text = buildMessage(message);
