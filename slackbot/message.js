@@ -1,17 +1,5 @@
 const bot = require('./index');
-
-const getSlackChannel = id => {
-  const getPrefix = id => id.slice(0, 4);
-  const prefix = getPrefix(id);
-  const isToday = prefix === 'tdna';
-  const isNews = prefix === 'ncna';
-  const isVideo = prefix === 'mmvo';
-
-  if (isNews || isVideo) return process.env.APPLENEWS_NBCNEWS_CHANNEL;
-  else if (isToday) return process.env.APPLENEWS_TODAY_CHANNEL;
-
-  return null;
-};
+const getSlackChannel = require('./helpers/getSlackChannel');
 
 const concatWithNewline = (originalText, newText) =>
   `${originalText}
