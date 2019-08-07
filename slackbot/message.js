@@ -7,8 +7,8 @@ const getSlackChannel = id => {
   const isNews = prefix === 'ncna';
   const isVideo = prefix === 'mmvo';
 
-  if (isNews || isVideo) return 'news-applenews-test';
-  else if (isToday) return 'today-applenews-test';
+  if (isNews || isVideo) return process.env.APPLENEWS_NBCNEWS_CHANNEL;
+  else if (isToday) return process.env.APPLENEWS_TODAY_CHANNEL;
 
   return null;
 };
